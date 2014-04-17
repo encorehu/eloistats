@@ -1,4 +1,4 @@
-
+{% set intCountShares = globals().get('intCountShares', '1') %}
 	var intCountShares = {{intCountShares}};
 	var intSharesPerUnit = (10.581333333333) * 0.02;
 	var intCurrentBlockHeight = 1;

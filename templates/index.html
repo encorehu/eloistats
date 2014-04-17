@@ -5,5 +5,129 @@
 {% block body_onload %} bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#0000ff" alink="#d3643b" onLoad="initShares();"{% end %}
 
 {% block content %}
-  <p>index page</p>
+<div id="wrapper">
+<div id="Eligius-Title">
+  <h2><a href="/">Apollo 矿池状态统计</a></h2><!--[if IE]><br/><![endif]-->
+  <h4>请用比特币向此地址捐助矿池统计状态的开发工作:<br/><b>12Xx9</b>WhredZ29o7LUGEdj4J5f4tXwLD9QQ</h4>
+</div>
+<div id="luck">
+<table class="lucktable" width="100%">
+<tr>
+<td width="30%" style="text-align: left">算力:</td><td width="25%" style="text-align: right; border-right:1px dotted #CCCCCC; padding-right: 3px; white-space: nowrap;" id="livehashrate">908.93 Gh/s</td>
+<td width="25%" style="text-align: left">本轮时间:</td><td width="20%" style="text-align: right" id="roundtime">00:00:01</td>
+</tr>
+</table>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div id="line"></div>
+<center>
+<ul id="menu">
+    <li><a href="/">首页</a></li>
+    <li><a href="/mystats">我的状态</a></li>
+    <li><a href="/blocks">挖到的块</a></li>
+    <li><a href="/topcontributors">排行榜</a></li>
+</ul>
+</center>
+<br/>
+<br/>
+<br/>
+<!--[if IE]><h4>当前页面在 <a HREF="http://www.google.com/chrome">Google Chrome</a> 表现最好, IE浏览器不能完整的显示页面.  使用IE浏览器, 你将不会得到最好的体验.</h4><![endif]-->
+欢迎使用我们的比特币矿池!
+<br/><br/>
+
+查看独立矿工状态, 使用 /userstats/[你的矿工比特币地址] 页面查看.<br/>
+例如, <a HREF="/userstats/1NBXu5bMqPB5AoZNq1ChcktnYaB9u5Xh1a">/userstats/1NBXu5bMqPB5AoZNq1ChcktnYaB9u5Xh1a</a>
+<br/><br/>
+<br/>
+<center><h3>最近的块</h3></center>
+
+<table id="blocklisttable" CLASS="blocklist"><thead><tr id="blocklistheaderid"><TH>年龄</TH><TH>开始时间</TH><TH>持续时间</TH><TH>已接受股份数</TH><TH>困难度</TH><TH>运气</TH><TH>算力</TH><TH>确认数</TH><TH>贡献者</TH><TH>区块高度</TH><TH>区块哈希</TH></tr></thead></table><small>(此统计表格在大多数浏览器里都是准实时更新的. Share 统计数量都转换为困难度为1的shares.)</small><br/>
+<br/>
+<div id="line"></div>
+<div id="graphdiv3phr" style="width:100%; height:275px;"></div>
+<script type="text/javascript">
+
+      function round(num, places) {
+        var shift = Math.pow(10, places);
+        return Math.round(num * shift)/shift;
+      };
+
+      var suffixes = ['', 'kh', 'Mh', 'Gh', 'Th', 'Ph', 'Eh'];
+      function formatValue(v) {
+  v = v * 1000000000;
+        if (v < 1000) return v;
+
+        var magnitude = Math.floor(String(Math.floor(v)).length / 3) - 1;
+        if (magnitude > suffixes.length - 1)
+          magnitude = suffixes.length - 1;
+        return String(round(v / Math.pow(10, magnitude * 3), 4)) +
+          suffixes[magnitude];
+      };
+
+  g2 = new Dygraph(
+    document.getElementById("graphdiv3phr"),
+    "poolhashrategraph",
+    { strokeWidth: 2.25,
+  'hashrate': {fillGraph: true },
+  labelsDivStyles: { border: '1px solid black' },
+  title: '矿池算力统计',
+  xlabel: '时间',
+  ylabel: 'Hashes/sec',
+  animatedZooms: true,
+  includeZero: true,
+  yValueFormatter: formatValue,
+  yAxisLabelFormatter: formatValue,
+  yAxisLabelWidth: 65
+  }
+  );
+</script>
+<br/>
+<div id="line"></div>
+<center><h3>矿池报酬变动</h3></center>
+<div id="graphdiv4" style="width:100%; height:150px;"></div>
+<script type="text/javascript">
+  g3 = new Dygraph(
+    document.getElementById("graphdiv4"),
+    "poolluckgraph",
+    { strokeWidth: 2.25,
+  'hashrate': {fillGraph: true },
+  labelsDivStyles: { border: '1px solid black' },
+  xlabel: 'Date',
+  ylabel: 'Percent of PPS',
+  animatedZooms: true
+  }
+  );
+</script>
+
+<div id="graphdiv5" style="width:100%; height:150px;"></div>
+<script type="text/javascript">
+  g3 = new Dygraph(
+    document.getElementById("graphdiv5"),
+    "poolluckgraph?btc=1",
+    { strokeWidth: 2.25,
+  fillGraph: true,
+  labelsDivStyles: { border: '1px solid black' },
+  xlabel: 'Date',
+  ylabel: 'Est. BTC',
+  animatedZooms: true
+  }
+  );
+</script>
+<small>(此图以相对于最大每股支付PPS的预估百分比的形式显示了矿池的挖矿收入, 以 1GH/s 算力的矿工在Block 高度为210000开始在Apollo挖矿作为参考)</small><br/>
+
+<br/><div id="line"></div>
+<h3><center>顶级大算力矿工 (3 小时平均算力) <a HREF="topcontributors">(查看全部)</a></center></h3>
+
+<table border="1" class="contributors"><tr class="contribhead"><td>等级</td><td>比特币地址</td><td>3 小时平均算力</td><td>3 小时贡献Shares</td><td>矿池占比</td></tr><tr HEIGHT="38" class="notodd"><td class="rank">#1</td><td><a HREF="userstats/1NBXu5bMqPB5AoZNq1ChcktnYaB9u5Xh1a">1NBXu5bMqPB5AoZNq1ChcktnYaB9u5Xh1a</a></td><td class="hash">1,019.08 Gh/s</td><td class="shares">2562560</td><td class="percent">100%</td></tr></table>
+<br/><br/>
+比特币网络当前挖矿困难度(difficulty): 6119726089.12815<br/>
+当前困难度下的最大每股支付额(PPS): 0.00000000<small>4085</small> BTC<br/>
+当前困难度下, 以1,019.08 Gh/s的算力找到一个Block需要的平均时间: 10 months, 4 weeks, 1 day and 16 hours<br/>
+当前困难度下, 以1,019.08 Gh/s的算力池子每天平均找到Block的数量: 0.004<br/>
+
+
+<br/><div id="line"></div>&copy;&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Apollo
 {% end %}

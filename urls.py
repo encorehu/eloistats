@@ -4,6 +4,7 @@ from handlers.mystats import MyStatsHandler
 from handlers.blocks import BlocksHandler
 from handlers.topcontributors import TopContributorsHandler
 from handlers.userstats import UserStatsHandler,UserStatsLuckGraphHandler
+from handlers.api import ApiHandler
 
 url_patterns = [
     (r"/", IndexHandler),
@@ -15,4 +16,6 @@ url_patterns = [
     (r"/userstats/poolluckgraph", UserStatsLuckGraphHandler),
     (r"/userstats/\w*", UserStatsHandler),
     (r"/instantscripts/[\w\.]*", FooHandler),
+    (r"/api/v1/", ApiHandler),
+    (r"/api/v1/\w*", ApiHandler),
 ]

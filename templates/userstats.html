@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}A bolder title{% end %}
+
+{% block body_onload %} bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#0000ff" alink="#d3643b" onLoad="initShares();"{% end %}
+
+{% block content %}
+<div id="wrapper">
+<div id="Eligius-Title">
+	<h2><a HREF="/">Apollo 矿池状态统计</a></h2><!--[if IE]><br/><![endif]-->
+	<h4>请用比特币向此地址捐助矿池统计状态的开发工作:<br/><b>12Xx9</b>WhredZ29o7LUGEdj4J5f4tXwLD9QQ</h4>
+</div>
+<div id="luck">
+<table class="lucktable" width="100%">
+<tr>
+<td width="30%" style="text-align: left">算力:</td><td width="25%" style="text-align: right; border-right:1px dotted #CCCCCC; padding-right: 3px; white-space: nowrap;" id="livehashrate">908.93 Gh/s</td>
+<td width="25%" style="text-align: left">本轮时间:</td><td width="20%" style="text-align: right" id="roundtime">00:00:01</td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div id="line"></div>
+<center>
+<ul id="menu">
+    <li><a href="/">首页</a></li>
+    <li><a href="/mystats.php">我的状态</a></li>
+    <li><a href="/blocks.php">挖到的块</a></li>
+    <li><a href="/topcontributors.php">排行榜</a></li>
+</ul>
+</center>
+<br>
+<br>
+<br>
+<!--[if IE]><h4>当前页面在 <a HREF="http://www.google.com/chrome">Google Chrome</a> 表现最好, IE浏览器不能完整的显示页面.  使用IE浏览器, 你将不会得到最好的体验.</h4><![endif]-->
+<h2>{{ addr }}</h2><div id="userstatsmain"><table class="userstatsbalance"><THEAD><tr><TH></TH><TH>未支付的余额</TH><TH><a HREF="http://eligius.st/wiki/index.php/Capped_PPS_with_Recent_Backpay">股份报酬</a></TH></tr></THEAD><tr class="userstatsodd"><td>As of last block: </td><td style="text-align: right;">0.00000000 BTC</td><td style="text-align: right; font-size: 80%;">0.00%</td></tr><tr class="userstatseven"><td>Estimated Change: </td><td style="text-align: right;">+0.00000000 BTC</td><td style="text-align: right; font-size: 80%;">0.00%</td></tr><tr class="userstatsodd"><td>Estimated Total: </td><td style="text-align: right;">0.00000000 BTC</td><td style="text-align: right; font-size: 80%;">0.00%</td></tr></table><table class="userstatshashrate"><THEAD><tr><TH WIDTH="34%"></TH><TH WIDTH="33%">算力平均值</TH><TH WIDTH="33%"><span title="Weighted 股份是矿池接受的股份数量 乘以 矿工提供的困难度, 基本上是相当于困难度为1的时候, 矿机提交给矿池的股份数量." style="border-bottom: 1px dashed #888888">Weighted 股份</span></TH></tr></THEAD><tr class="userstatseven"><td>12 hours</td><td style="text-align: right;">356.27 Gh/s</td><td style="text-align: right;">3583488</td></tr><tr class="userstatsodd"><td>3 hours</td><td style="text-align: right;">1,019.08 Gh/s</td><td style="text-align: right;">2562560</td></tr><tr class="userstatseven"><td>22.5 minutes</td><td style="text-align: right;">908.93 Gh/s</td><td style="text-align: right;">285696</td></tr><tr class="userstatsodd"><td>256 seconds</td><td style="text-align: right;">0.00 kh/s</td><td style="text-align: right;">0</td></tr><tr class="userstatseven"><td>128 seconds</td><td style="text-align: right;">0.00 kh/s</td><td style="text-align: right;">0</td></tr></table><br/><br/><INPUT TYPE="BUTTON" onClick="$('#workeritems').toggle();" VALUE="切换矿工明细"><br/><br/><table id="workeritems" class="userstatsworkers"><THEAD><TH  style="text-align: left;">Worker Name</TH><TH  style="text-align: right;">算力</TH><TH  style="text-align: right;">已接受的股份数</TH></THEAD><tr class="userstatsodd"><td><b>default</b></td><td></td><td></td></tr>
+<tr class="userstatsodd" style="text-align: right;"><td><I>12 小时</I></td><td>356.27 Gh/s</td><td>3583488</td></tr><tr class="userstatsodd" style="text-align: right;"><td><I>3 小时</I></td><td>1,019.08 Gh/s</td><td>2562560</td></tr><tr class="userstatsodd" style="text-align: right;"><td><I>22.5 分钟</I></td><td>908.93 Gh/s</td><td>285696</td></tr><tr BGCOLOR="#CCCCCC"><td COLSPAN="3" style="white-space: normal; word-wrap:break-word;"><b>Note</b>: There are 5 idle or no longer used workers that are not shown in the table:<br/>default, default, default, default, default.</td></tr></table><script language="javascript">
+<!--
+$(document).ready($('#workeritems').toggle());
+
+--></script>
+<div id="ugraphdiv2" style="width:750px; height:375px;"></div><INPUT TYPE="BUTTON" onClick="showmax();" VALUE="切换到最大报酬图"><br/><div id="ugraphdiv3" style="width:750px; height:375px;"></div><script type="text/javascript">
+
+	var blockUpdateA = 0;
+	var blockUpdateB = 0;
+
+	g2 = new Dygraph(document.getElementById("ugraphdiv2"),"{{ addr }}?cmd=hashgraph&start=0&back=604800&res=1",{
+		strokeWidth: 1.5,
+		fillGraph: true,
+		'675 second': { color: '#408000' },
+		'3 hour': { fillGraph: false, strokeWidth: 2.25, color: '#400080' },
+		'12 hour': { fillGraph: false, strokeWidth: 2.25, color: '#008080' },
+		labelsDivStyles: { border: '1px solid black' },
+		title: '算力图 ({{ addr }})',
+		xlabel: '时间',
+		ylabel: 'Mh/sec',
+		animatedZooms: true,
+		drawCallback: function(dg, is_initial) {
+		if (is_initial) {
+				var rangeA = g2.xAxisRange();
+				g3.updateOptions( { dateWindow: rangeA } );
+			} else {
+				if (!blockUpdateA) {
+					blockUpdateB = 1;
+					var rangeA = g2.xAxisRange();
+					g3.updateOptions( { dateWindow: rangeA } );
+					blockUpdateB = 0;
+				}
+			}
+		}
+
+	});
+
+	var mrindex = 0;
+	var mrhidden = 1;
+	g3 = new Dygraph(
+	document.getElementById("ugraphdiv3"),"{{ addr }}?cmd=balancegraph&start=0&back=604800&res=1",{
+		strokeWidth: 2.25,
+		fillGraph: true,
+		labelsDivStyles: { border: '1px solid black' },
+		title: '余额图 ({{ addr }})',
+		xlabel: '时间',
+		ylabel: 'BTC',
+		animatedZooms: true,
+		drawCallback: function(dg, is_initial) {
+			if (is_initial) {
+				mrindex = dg.indexFromSetName("maximum reward") - 1;
+				dg.setVisibility(mrindex, 0);
+				var rangeB = g3.xAxisRange();
+				g2.updateOptions( { dateWindow: rangeB } );
+			} else {
+				if (!blockUpdateB) {
+					blockUpdateA = 1;
+					var rangeB = g3.xAxisRange();
+					g2.updateOptions( { dateWindow: rangeB } );
+					blockUpdateA = 0;
+				}
+			}
+		}
+	});
+
+	var showmax = function() {
+		if (mrhidden) {
+			g3.setVisibility(mrindex, 1);
+			mrhidden = 0;
+		} else {
+			g3.setVisibility(mrindex, 0);
+			mrhidden = 1;
+		}
+	}
+</script>
+</div><div id="userstatsright"><b>最新支付</b><br/>没有可用数据.<br/>历史全部支付总量: 0.00000000 BTC<br/><br/><HR><br/><b>在支付队列中预计所处位置</b><br/><span style="font-size: 0.8em">大约还需要 0.04194304 BTC 就进入 <a HREF="/payoutqueue.php#{{ addr }}">支付队列</a>. 以你保持目前3小时算力均值来看, 大约需要在 12 hours and 1 minute 之后, 在当前比特币网络的困难度( 6,119,726,089.13) 的条件下.</span><br/><br/><HR><br/><b>预计收入</b><br/><span style="font-size: 0.8em">在当前比特币网络挖矿困难度( 6,119,726,089.13 )条件下, 以你目前保持的 3小时平均算力 1,019.08 Gh/s 来计算, 你的最大潜在收入是  0.08374754 BTC / 每天.
+</span><br/><br/><HR></div><br/><small>(本页面数据是定期更新的缓存数据, 以30秒钟的间隔更新一次你的短期算力数值, 余额, 和被拒绝的股份数目; 以 675秒的时间间隔更新图表, 长期算力数值, 和其他数据.</small><br/><br/><div id="line"></div>&copy;&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Apollo
+{% end %}

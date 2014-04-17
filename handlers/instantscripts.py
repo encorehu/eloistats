@@ -4,6 +4,6 @@ import logging
 logger = logging.getLogger('boilerplate.' + __name__)
 
 
-class IndexHandler(BaseHandler):
+class LiveDataHandler(BaseHandler):
     def get(self):
-        self.render("index.html")
+        self.render("livedata-main.js")

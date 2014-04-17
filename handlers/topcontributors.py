@@ -6,4 +6,4 @@ logger = logging.getLogger('boilerplate.' + __name__)
 
 class TopContributorsHandler(BaseHandler):
     def get(self):
-        self.render("index.html")
+        self.render("topcontributors.html")

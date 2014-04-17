@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}A bolder title{% end %}
+
+{% block body_onload %} bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#0000ff" alink="#d3643b" onLoad="initShares();"{% end %}
+
+{% block content %}
+<div id="wrapper">
+<div id="Eligius-Title">
+	<h2><a HREF="/">Apollo 矿池状态统计</a></h2><!--[if IE]><bR><![endif]-->
+	<h4>请用比特币向此地址捐助矿池统计状态的开发工作:<bR><b>12Xx9</b>WhredZ29o7LUGEdj4J5f4tXwLD9QQ</h4>
+</div>
+<div id="luck">
+<table class="lucktable" width="100%">
+<tr>
+<td width="30%" style="text-align: left">算力:</td><td width="25%" style="text-align: right; border-right:1px dotted #CCCCCC; padding-right: 3px; white-space: nowrap;" id="livehashrate">908.93 Gh/s</td>
+<td width="25%" style="text-align: left">本轮时间:</td><td width="20%" style="text-align: right" id="roundtime">00:00:01</td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div id="line"></div>
+<center>
+<ul id="menu">
+    <li><a href="/">首页</a></li>
+    <li><a href="/mystats">我的状态</a></li>
+    <li><a href="/blocks">挖到的块</a></li>
+    <li><a href="/topcontributors">排行榜</a></li>
+</ul>
+</center>
+<br>
+<br>
+<br>
+<!--[if IE]><h4>当前页面在 <a HREF="http://www.google.com/chrome">Google Chrome</a> 表现最好, IE浏览器不能完整的显示页面.  使用IE浏览器, 你将不会得到最好的体验.</h4><![endif]-->
+<table BORDER=1 class="contributors"><tr class="contribhead"><td>等级</td><td>比特币地址</td><td>3 小时平均算力</td><td>3 小时贡献Shares</td><td>矿池占比</td></tr><tr HEIGHT="38" class="notodd"><td class="rank">#1</td><td><a HREF="userstats/1NBXu5bMqPB5AoZNq1ChcktnYaB9u5Xh1a">1NBXu5bMqPB5AoZNq1ChcktnYaB9u5Xh1a</a></td><td class="hash">1,019.08 Gh/s</td><td class="shares">2562560</td><td class="percent">100%</td></tr></table><bR><div id="line"></div>&copy;&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Apollo
+{% end %}

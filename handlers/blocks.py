@@ -6,4 +6,4 @@ logger = logging.getLogger('boilerplate.' + __name__)
 
 class BlocksHandler(BaseHandler):
     def get(self):
-        self.render("index.html")
+        self.render("blocks.html")

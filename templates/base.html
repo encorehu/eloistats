@@ -1,12 +1,21 @@
 <html>
-    <head>
-        <title>{% block title %}Tornado Boilerplate{% end %}</title>
-    </head>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>{% block title %}矿池状态统计{% end %}</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<!--[if lt IE 9]><script src="{{ static_url("js/IE9.js") }}"></script><![endif]-->
+		<script type="text/javascript" src="{{ static_url("js/dygraph-combined.js") }}"></script>
+		<script type="text/javascript" src="{{ static_url("js/jquery.js") }}"></script>
+		<script type="text/javascript" src="{{ static_url("js/sortable.js") }}"></script>
+		<script type="text/javascript" src="{{ static_url("instantscripts.php/livedata-main.js?rand=2752280047763472730") }}"></script>
+		<!--[if IE]><script type="text/javascript" src="{{ static_url("js/excanvas.js") }}"></script><![endif]-->
+		<link rel="stylesheet" type="text/css" href="{{ static_url("css/stats-style.css") }}">
+	</head>
 
-    <body>
-        <h1>It worked!</h1>
-        {% block content %}
+	<body{% block body_onload %}{% end %}>
+		<h1>It worked!</h1>
+		{% block content %}
 
-        {% end %}
-    </body>
+		{% end %}
+	</body>
 </html>

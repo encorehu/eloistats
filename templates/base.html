@@ -1,9 +1,12 @@
 <html>
     <head>
-        <title>Tornado Boilerplate</title>
+        <title>{% block title %}Tornado Boilerplate{% end %}</title>
     </head>
 
     <body>
         <h1>It worked!</h1>
+        {% block content %}
+
+        {% end %}
     </body>
 </html>

@@ -51,7 +51,7 @@
 	function updateSharesData()
 	{
 
-		$.getJSON("http://pool.qb.vc/instant.php/livedata.json?rand=" + Math.random(),
+		$.getJSON("/instant/livedata.json?rand=" + Math.random(),
 			function(data){
 				intCountShares = data.roundsharecount;
 				intSharesPerUnit = data.sharesperunit * 0.02;
@@ -73,7 +73,7 @@
 	{
 		if (latestBlockHeight != intCurrentBlockHeight) {
 			// new block found... add it!
-			$.getJSON("http://pool.qb.vc/instant.php/blockinfo.json?height="+latestBlockHeight+"&cclass="+$("#blocklisttable tr:last").attr('class'),
+			$.getJSON("/instant/blockinfo.json?height="+latestBlockHeight+"&cclass="+$("#blocklisttable tr:last").attr('class'),
 				function(data){
 					$("#blocklistheaderid").after(data.blockrow);
 					$("#blocklisttable tr:last").remove();
@@ -122,7 +122,7 @@
 
 	function updateBlockRow(relem, rblockid) {
 
-			$.getJSON("http://pool.qb.vc/instant.php/blockinfo.json?dbid="+rblockid+"&cclass="+$(relem).attr('class'),
+			$.getJSON("/instant/blockinfo.json?dbid="+rblockid+"&cclass="+$(relem).attr('class'),
 				function(data){
 					$(relem).after(data.blockrow);
 					$(relem).remove();

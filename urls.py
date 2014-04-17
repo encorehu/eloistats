@@ -5,6 +5,7 @@ from handlers.blocks import BlocksHandler
 from handlers.topcontributors import TopContributorsHandler
 from handlers.userstats import UserStatsHandler,UserStatsLuckGraphHandler,UserStatsHashrateGraphHandler
 from handlers.instantscripts import LiveDataHandler
+from handlers.instant import InstantdataHandler
 from handlers.api import ApiHandler
 
 url_patterns = [
@@ -18,6 +19,7 @@ url_patterns = [
     (r"/poolluckgraph", UserStatsLuckGraphHandler),
     (r"/poolhashrategraph", UserStatsHashrateGraphHandler),
     (r"/userstats/(\w*)", UserStatsHandler),
+    (r"/instant/livedata.json", InstantdataHandler),
     (r"/instantscripts/livedata.js", LiveDataHandler),
     (r"/instantscripts/livedata-main.js", LiveDataHandler),
     (r"/api/v1/", ApiHandler),

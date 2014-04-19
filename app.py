@@ -36,6 +36,8 @@ def main():
         setsession=("SET TIME ZONE UTC",),
         raise_connect_errors=False,
     )
+    app.schema = 'wizkid057'
+    app.server_id = 7
 
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)

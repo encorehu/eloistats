@@ -15,7 +15,6 @@ url_patterns = [
     (r"/blocks", BlocksHandler),
     (r"/topcontributors", TopContributorsHandler),
     (r"/userstats", UserStatsHandler),
-    (r"/userstats", UserStatsLuckGraphHandler),
     (r"/poolluckgraph", UserStatsLuckGraphHandler),
     (r"/poolhashrategraph", UserStatsHashrateGraphHandler),
     (r"/userstats/(\w*)", UserStatsHandler),

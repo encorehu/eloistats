@@ -12,7 +12,7 @@ import momoko
 db_database = os.environ.get('MOMOKO_TEST_DB', 'pooldb')
 db_user = os.environ.get('MOMOKO_TEST_USER', 'eloipool')
 db_password = os.environ.get('MOMOKO_TEST_PASSWORD', '')
-db_host = os.environ.get('MOMOKO_TEST_HOST', '')
+db_host = os.environ.get('MOMOKO_TEST_HOST', 'localhost')
 db_port = os.environ.get('MOMOKO_TEST_PORT', 5432)
 enable_hstore = True if os.environ.get('MOMOKO_TEST_HSTORE', False) == '1' else False
 dsn = 'dbname=%s user=%s password=%s host=%s port=%s' % (

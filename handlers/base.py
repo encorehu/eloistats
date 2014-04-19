@@ -12,7 +12,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
     @property
     def db(self):
-        return self.app.db
+        return self.application.db
 
     def load_json(self):
         """Load JSON from the request body and store them in

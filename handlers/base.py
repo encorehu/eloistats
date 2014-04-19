@@ -10,6 +10,10 @@ class BaseHandler(tornado.web.RequestHandler):
     subclass this one.
     """
 
+    @property
+    def db(self):
+        return self.app.db
+
     def load_json(self):
         """Load JSON from the request body and store them in
         self.request.arguments, like Tornado does by default for POSTed form

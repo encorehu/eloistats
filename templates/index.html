@@ -48,7 +48,9 @@
 <br/>
 <center><h3>最近的块</h3></center>
 
-<table id="blocklisttable" CLASS="blocklist"><thead><tr id="blocklistheaderid"><TH>年龄</TH><TH>开始时间</TH><TH>持续时间</TH><TH>已接受股份数</TH><TH>困难度</TH><TH>运气</TH><TH>算力</TH><TH>确认数</TH><TH>贡献者</TH><TH>区块高度</TH><TH>区块哈希</TH></tr></thead></table><small>(此统计表格在大多数浏览器里都是准实时更新的. Share 统计数量都转换为困难度为1的shares.)</small><br/>
+{% include blocks_table.html %}
+
+<small>(此统计表格在大多数浏览器里都是准实时更新的. Share 统计数量都转换为困难度为1的shares.)</small><br/>
 <br/>
 <div id="line"></div>
 <div id="graphdiv3phr" style="width:100%; height:275px;"></div>
@@ -132,6 +134,4 @@
 当前困难度下, 以1,019.08 Gh/s的算力找到一个Block需要的平均时间: 10 months, 4 weeks, 1 day and 16 hours<br/>
 当前困难度下, 以1,019.08 Gh/s的算力池子每天平均找到Block的数量: 0.004<br/>
 
-
-<br/><div id="line"></div>&copy;&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Apollo
 {% end %}

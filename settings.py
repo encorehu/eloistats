@@ -58,7 +58,7 @@ LOGGERS = {
         'boilerplate': {},
     },
 }
-
+settings['debug']=True
 if settings['debug']:
     LOG_LEVEL = logging.DEBUG
 else:

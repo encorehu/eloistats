@@ -34,7 +34,12 @@
 <br>
 <br>
 <br>
-<!--[if IE]><h4>当前页面在 <a HREF="http://www.google.com/chrome">Google Chrome</a> 表现最好, IE浏览器不能完整的显示页面.  使用IE浏览器, 你将不会得到最好的体验.</h4><![endif]-->
-<small><a HREF="?show_stale=1">(显示 过期/落单 区块 )</a></small><bR><small>点击表格标题栏可以对数据进行排序</small><bR><bR><table id="blocklisttable" CLASS="blocklist sortable"><thead><tr id="blocklistheaderid"><TH>年龄</TH><TH>开始时间</TH><TH>持续时间</TH><TH>已接受股份数</TH><TH>困难度</TH><TH>运气</TH><TH>算力</TH><TH>确认数</TH><TH>贡献者</TH><TH>区块高度</TH><TH>区块哈希</TH></tr></thead></table><bR>已确认区块: 0 个 --- 过期区块: 0 个
-<br/><div id="line"></div>&copy;&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Apollo
+<!--[if IE]><h4>当前页面在 <a href="http://www.google.com/chrome">Google Chrome</a> 表现最好, IE浏览器不能完整的显示页面.  使用IE浏览器, 你将不会得到最好的体验.</h4><![endif]-->
+<small><a HREF="?show_stale=1">(显示 过期/落单 区块 )</a></small><bR><small>点击表格标题栏可以对数据进行排序</small>
+<br><br>
+
+{% include blocks_table.html %}
+
+	<br>已确认区块: {{gc}} 个 --- 过期区块: {{od}} 个
+
 {% end %}

@@ -8,6 +8,7 @@ from tornado.options import options
 from tornado import gen
 
 import momoko
+import psycopg2
 
 db_database = os.environ.get('MOMOKO_TEST_DB', 'pooldb')
 db_user = os.environ.get('MOMOKO_TEST_USER', 'eloipool')
@@ -31,6 +32,7 @@ def main():
 
     app.db = momoko.Pool(
         dsn=dsn,
+        cursor_factory=psycopg2.extras.NamedTupleCursor,
         size=1,
         max_size=3,
         setsession=("SET TIME ZONE UTC",),

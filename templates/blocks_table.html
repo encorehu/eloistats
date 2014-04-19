@@ -1,0 +1,53 @@
+<table id="blocklisttable" CLASS="blocklist">
+	<thead>
+		<tr id="blocklistheaderid">
+			<th>年龄</th>
+			<th>开始时间</th>
+			<th>持续时间</th>
+			<th>已接受股份数</th>
+			<th>困难度</th>
+			<th>运气</th>
+			<th>算力</th>
+			<th>确认数</th>
+			<th>贡献者</th>
+			<th>区块高度</th>
+			<th>区块哈希</th>
+		</tr>
+	</thead>
+	{% set gc=0 %}
+	{% set od=0 %}
+	{% for block in blocks %}
+	{{ block }}
+		<tr id="blockrow{{block.blockid}}">
+			<td>{{ block.age }}</td>
+			<td style="font-size: 0.8em;">{{ block.roundstart }}</td>
+			<td>{{ block.duration }}</td>
+			<td>{{ block.acceptedshares }}</td>
+			<td>{{ block.network_difficulty }}</td>
+			<td>
+				{% if block.acceptedshares %}
+					{% set luck = 100 * ( block.network_difficulty / block.acceptedshares) %}
+				{% else %}
+					{% set luck = 0.6 %}
+				{% end %}
+				{% if luck >9000 %}
+					<a style="color:#3b4033;font-weight:normal;text-decoration:none;cursor:default" href="9000.php">&gt;9,000%</a>
+				{% else %}
+					{{ round(luck) }}%
+				{% end %}
+			</td>
+			<td>
+				{% if block.duration >0 %}
+		    	{% set hashrate = (block.acceptedshares * 4294967296) / block.duration %}
+		    {% else %}
+		    	{% set hashrate = 0 %}
+		    {% end %}
+		    {{hashrate}}
+			</td>
+			<td>{% if block.confirmations > 120 %}{% set gc=gc+1 %}已确认{% elif block.confirmations == 0 %}{% set od=od+1 %}{% else %}{{block.confirmations}}/120{% end %}</td>
+			<td>{{ block.user_id }}</td>
+			<td>{{ block.height }}</td>
+			<td style="font-family:monospace;"><a href="/blockinfo/{{ block.blockhash}}">{{ block.blockhash}}</a></td>
+		</tr>
+	{% end %}
+</table>
